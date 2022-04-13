@@ -16,11 +16,6 @@ public class LoginAccount extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/login.jsp").forward(req, resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         GenericModel<User> accountModel = new GenericModel<>(User.class);
 
         List<User> result = accountModel.getAll();
@@ -30,6 +25,13 @@ public class LoginAccount extends HttpServlet {
 
             accountModel.save(user);
         }
+
+        req.getRequestDispatcher("/login.jsp").forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        GenericModel<User> accountModel = new GenericModel<>(User.class);
 
         String userName = req.getParameter("userName");
         String password = req.getParameter("password");

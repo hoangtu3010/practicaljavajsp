@@ -29,6 +29,8 @@ public class GetListProductController extends HttpServlet {
             model.save(product3);
             model.save(product4);
             model.save(product5);
+
+            result = model.getAll();
         }
 
         req.setAttribute("listProducts", result);
